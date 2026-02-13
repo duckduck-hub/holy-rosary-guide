@@ -3,99 +3,391 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Holy Rosary</title>
+    <title>The Holy Rosary - Guide for the Faithful</title>
     <style>
+        /* --- VATICAN & MARIAN THEME --- */
+        :root {
+            --marian-blue: #002F6C;    /* Deep Blue for the Virgin Mary */
+            --vatican-gold: #D4AF37;   /* Gold for the Church/Vatican */
+            --paper-white: #FCFBF4;    /* Off-white parchment look */
+            --text-dark: #222222;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            font-family: 'Times New Roman', Times, serif; /* Traditional Liturgical Font */
+            background-color: var(--paper-white);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
             line-height: 1.6;
-            padding: 20px;
         }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        h1, h2, h3 {
-            color: #4CAF50;
-        }
-        button {
-            background: #4CAF50;
+
+        /* --- HEADER SECTION --- */
+        header {
+            background-color: var(--marian-blue);
             color: white;
-            border: none;
-            padding: 10px 15px;
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 6px solid var(--vatican-gold);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            color: #E0E0E0;
+        }
+
+        /* --- LAYOUT --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: var(--marian-blue);
+            border-bottom: 2px solid var(--vatican-gold);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        h3 {
+            color: var(--vatican-gold);
+            background: var(--marian-blue);
+            padding: 10px;
+            margin-top: 30px;
+            border-radius: 4px;
+        }
+
+        /* --- PRAYER TEXTS --- */
+        .prayer-box {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-left: 5px solid var(--vatican-gold);
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .prayer-title {
+            font-weight: bold;
+            color: var(--marian-blue);
+            display: block;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        /* --- INTERACTIVE TABS FOR MYSTERIES --- */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background-color: white;
+            border: 2px solid var(--marian-blue);
+            color: var(--marian-blue);
+            padding: 15px 25px;
             cursor: pointer;
+            font-weight: bold;
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1rem;
+            flex: 1 1 200px; /* Responsive buttons */
+            transition: 0.3s;
+        }
+
+        .tab-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        .tab-btn.active {
+            background-color: var(--marian-blue);
+            color: var(--vatican-gold);
+        }
+
+        .mystery-content {
+            display: none; /* Hidden by default */
+            animation: fadeIn 0.5s;
+        }
+
+        .mystery-content.active {
+            display: block; /* Shown when active */
+        }
+
+        .decade {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
             border-radius: 5px;
         }
-        button:hover {
-            background: #45a049;
+
+        .meditation {
+            font-style: italic;
+            color: #555;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-left: 3px solid var(--marian-blue);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: var(--marian-blue);
+            color: white;
+            margin-top: 50px;
+            border-top: 6px solid var(--vatican-gold);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Text */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .tab-btn { padding: 10px; font-size: 1rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>The Holy Rosary</h1>
-        <h2>Total of Prayers</h2>
-        <p>Each day and for every mystery of each day, you’ll lead the prayer of the rosary.</p>
-        <h3>Prayers:</h3>
-        <ul>
-            <li>Sign of the Cross</li>
-            <li>Our Father</li>
-            <li>Hail Mary</li>
-            <li>Glory Be</li>
-            <li>Fatima Prayer</li>
-        </ul>
-        <h2>Mysteries of the Rosary</h2>
-        <p>Each mystery corresponds to a day of the week:</p>
-        <ul>
-            <li>Sorrowful Mysteries (Tuesday, Friday)</li>
-            <li>Joyful Mysteries (Monday, Thursday)</li>
-            <li>Glorious Mysteries (Wednesday, Sunday)</li>
-            <li>Luminous Mysteries (Thursday)</li>
-        </ul>
-        <h2>JavaScript Functionality</h2>
-        <button onclick="displayMysteries()">Show Today's Mystery</button>
-        <p id="mysteryDisplay"></p>
-    </div>
-    <script>
-        function displayMysteries() {
-            const today = new Date();
-            const day = today.getDay();
-            const mysteries = [
-                'Sorrowful Mysteries',
-                'Joyful Mysteries',
-                'Glorious Mysteries',
-                'Luminous Mysteries'
-            ];
-            const mysteryDisplay = document.getElementById('mysteryDisplay');
-            switch (day) {
-                case 0: // Sunday
-                    mysteryDisplay.innerText = mysteries[2]; // Glorious
-                    break;
-                case 1: // Monday
-                    mysteryDisplay.innerText = mysteries[1]; // Joyful
-                    break;
-                case 2: // Tuesday
-                    mysteryDisplay.innerText = mysteries[0]; // Sorrowful
-                    break;
-                case 3: // Wednesday
-                    mysteryDisplay.innerText = mysteries[2]; // Glorious
-                    break;
-                case 4: // Thursday
-                    mysteryDisplay.innerText = mysteries[3]; // Luminous
-                    break;
-                case 5: // Friday
-                    mysteryDisplay.innerText = mysteries[0]; // Sorrowful
-                    break;
-                case 6: // Saturday
-                    mysteryDisplay.innerText = mysteries[2]; // Glorious
-                    break;
+
+<header>
+    <h1>The Holy Rosary</h1>
+    <p>The Psalter of the Blessed Virgin Mary</p>
+</header>
+
+<div class="container">
+
+    <section>
+        <h2>The Prayers of the Rosary</h2>
+        <p>Before beginning the Mysteries, recite these prayers in order.</p>
+
+        <div class="prayer-box">
+            <span class="prayer-title">1. The Sign of the Cross</span>
+            In the name of the Father, and of the Son, and of the Holy Spirit. Amen.
+        </div>
+
+        <div class="prayer-box">
+            <span class="prayer-title">2. The Apostles' Creed</span>
+            I believe in God, the Father Almighty, Creator of heaven and earth, and in Jesus Christ, His only Son, our Lord, who was conceived by the Holy Spirit, born of the Virgin Mary, suffered under Pontius Pilate, was crucified, died and was buried; He descended into hell; on the third day He rose again from the dead; He ascended into heaven, and is seated at the right hand of God the Father Almighty; from there He will come to judge the living and the dead. I believe in the Holy Spirit, the holy Catholic Church, the communion of saints, the forgiveness of sins, the resurrection of the body, and life everlasting. Amen.
+        </div>
+
+        <div class="prayer-box">
+            <span class="prayer-title">3. The Our Father</span>
+            Our Father, who art in heaven, hallowed be Thy name; Thy kingdom come; Thy will be done on earth as it is in heaven. Give us this day our daily bread; and forgive us our trespasses as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil. Amen.
+        </div>
+
+        <div class="prayer-box">
+            <span class="prayer-title">4. The Hail Mary</span>
+            Hail Mary, full of grace, the Lord is with thee; blessed art thou among women, and blessed is the fruit of thy womb, Jesus. Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen.
+        </div>
+
+        <div class="prayer-box">
+            <span class="prayer-title">5. The Glory Be</span>
+            Glory be to the Father, and to the Son, and to the Holy Spirit. As it was in the beginning, is now, and ever shall be, world without end. Amen.
+        </div>
+
+        <div class="prayer-box">
+            <span class="prayer-title">6. The Fatima Prayer (O My Jesus)</span>
+            O my Jesus, forgive us our sins, save us from the fires of hell, and lead all souls to Heaven, especially those in most need of Thy mercy.
+        </div>
+    </section>
+
+    <section>
+        <h2>Meditate on the Mysteries</h2>
+        <p>Select the set of mysteries for today to see the meditations.</p>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openMystery('joyful')">Joyful<br><small>(Mon & Sat)</small></button>
+            <button class="tab-btn" onclick="openMystery('luminous')">Luminous<br><small>(Thu)</small></button>
+            <button class="tab-btn" onclick="openMystery('sorrowful')">Sorrowful<br><small>(Tue & Fri)</small></button>
+            <button class="tab-btn" onclick="openMystery('glorious')">Glorious<br><small>(Wed & Sun)</small></button>
+        </div>
+
+        <div id="joyful" class="mystery-content active">
+            <h3>The Joyful Mysteries</h3>
+            <p>Theme: The Incarnation. Focus on the humility of Mary and the childhood of Jesus.</p>
+            
+            <div class="decade">
+                <strong>1. The Annunciation</strong>
+                <div class="meditation">Focus on: Humility. The Angel Gabriel appears to Mary, and she says "Yes" to God's will.</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+            <div class="decade">
+                <strong>2. The Visitation</strong>
+                <div class="meditation">Focus on: Charity/Love of Neighbor. Mary visits her cousin Elizabeth, who is pregnant with John the Baptist.</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+            <div class="decade">
+                <strong>3. The Nativity</strong>
+                <div class="meditation">Focus on: Poverty of Spirit. Jesus is born in a stable in Bethlehem. God becomes man.</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+            <div class="decade">
+                <strong>4. The Presentation</strong>
+                <div class="meditation">Focus on: Obedience. Mary and Joseph present the baby Jesus in the Temple.</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+            <div class="decade">
+                <strong>5. The Finding in the Temple</strong>
+                <div class="meditation">Focus on: Piety/Joy in finding Jesus. After being lost for three days, Jesus is found teaching in the temple.</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+        </div>
+
+        <div id="luminous" class="mystery-content">
+            <h3>The Luminous Mysteries</h3>
+            <p>Theme: Christ's Public Ministry. Focus on Jesus bringing light to the world.</p>
+            
+            <div class="decade">
+                <strong>1. The Baptism in the Jordan</strong>
+                <div class="meditation">Focus on: Openness to the Holy Spirit. The heavens open and the Father proclaims, "This is my beloved Son."</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+            <div class="decade">
+                <strong>2. The Wedding at Cana</strong>
+                <div class="meditation">Focus on: To Jesus through Mary. At Mary's request, Jesus performs His first miracle, turning water into wine.</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+            <div class="decade">
+                <strong>3. The Proclamation of the Kingdom</strong>
+                <div class="meditation">Focus on: Repentance and Trust in God. Jesus preaches the Gospel and calls all to conversion.</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+            <div class="decade">
+                <strong>4. The Transfiguration</strong>
+                <div class="meditation">Focus on: Desire for Holiness. Jesus is transfigured on Mount Tabor, revealing His divine glory to the Apostles.</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+            <div class="decade">
+                <strong>5. The Institution of the Eucharist</strong>
+                <div class="meditation">Focus on: Adoration. At the Last Supper, Jesus gives us His Body and Blood in the Holy Eucharist.</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+        </div>
+
+        <div id="sorrowful" class="mystery-content">
+            <h3>The Sorrowful Mysteries</h3>
+            <p>Theme: The Passion. Focus on the suffering Jesus endured for our sins.</p>
+            
+            <div class="decade">
+                <strong>1. The Agony in the Garden</strong>
+                <div class="meditation">Focus on: True Contrition for Sin. Jesus sweats blood praying to the Father in Gethsemane.</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+            <div class="decade">
+                <strong>2. The Scourging at the Pillar</strong>
+                <div class="meditation">Focus on: Purity/Mortification. Jesus is lashed with whips, enduring terrible physical pain.</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+            <div class="decade">
+                <strong>3. The Crowning with Thorns</strong>
+                <div class="meditation">Focus on: Moral Courage. A crown of thorns is mocked and pressed into His head.</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+            <div class="decade">
+                <strong>4. The Carrying of the Cross</strong>
+                <div class="meditation">Focus on: Patience. Jesus carries the heavy wood to Calvary, falling three times.</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+            <div class="decade">
+                <strong>5. The Crucifixion</strong>
+                <div class="meditation">Focus on: Salvation/Forgiveness. Jesus dies on the cross to save the world.</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+        </div>
+
+        <div id="glorious" class="mystery-content">
+            <h3>The Glorious Mysteries</h3>
+            <p>Theme: The Resurrection. Focus on the triumph of God and eternal life.</p>
+            
+            <div class="decade">
+                <strong>1. The Resurrection</strong>
+                <div class="meditation">Focus on: Faith. Jesus rises from the dead, conquering sin and death forever.</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+            <div class="decade">
+                <strong>2. The Ascension</strong>
+                <div class="meditation">Focus on: Hope. Jesus ascends into Heaven to take His place at the right hand of the Father.</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+            <div class="decade">
+                <strong>3. The Descent of the Holy Spirit</strong>
+                <div class="meditation">Focus on: Love of God/Wisdom. The Holy Spirit comes down upon Mary and the Apostles at Pentecost.</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+            <div class="decade">
+                <strong>4. The Assumption</strong>
+                <div class="meditation">Focus on: Grace of a Happy Death. The Virgin Mary is taken up body and soul into Heaven.</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+            <div class="decade">
+                <strong>5. The Coronation of Mary</strong>
+                <div class="meditation">Focus on: Trust in Mary's Intercession. Mary is crowned Queen of Heaven and Earth.</div>
+                <p>Pray: 1 Our Father, 10 Hail Marys, 1 Glory Be, 1 Fatima Prayer.</p>
+            </div>
+        </div>
+
+        <div class="prayer-box" style="margin-top: 40px; border-left-color: var(--marian-blue);">
+            <span class="prayer-title">Concluding Prayer: Hail Holy Queen (Salve Regina)</span>
+            Hail, holy Queen, Mother of mercy, hail, our life, our sweetness and our hope. To thee do we cry, poor banished children of Eve: to thee do we send up our sighs, mourning and weeping in this valley of tears. Turn then, most gracious Advocate, thine eyes of mercy toward us, and after this our exile, show unto us the blessed fruit of thy womb, Jesus, O clement, O loving, O sweet Virgin Mary. 
+            <br><br>
+            <strong>V.</strong> Pray for us, O holy Mother of God.<br>
+            <strong>R.</strong> That we may be made worthy of the promises of Christ.
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>O Mary, conceived without sin, pray for us who have recourse to thee.</p>
+</footer>
+
+<script>
+    function openMystery(mysteryName) {
+        // Hide all mystery content
+        var i, content, tablinks;
+        content = document.getElementsByClassName("mystery-content");
+        for (i = 0; i < content.length; i++) {
+            content[i].style.display = "none";
+            content[i].classList.remove("active");
+        }
+        
+        // Deactivate all buttons
+        tablinks = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+
+        // Show the specific mystery and activate button
+        document.getElementById(mysteryName).style.display = "block";
+        document.getElementById(mysteryName).classList.add("active");
+        
+        // Find the button that was clicked (based on the onclick match)
+        // This is a simple way to highlight the button
+        var buttons = document.getElementsByTagName('button');
+        for (var j = 0; j < buttons.length; j++) {
+            if(buttons[j].getAttribute('onclick').includes(mysteryName)) {
+                buttons[j].classList.add('active');
             }
         }
-    </script>
+    }
+</script>
+
 </body>
 </html>
