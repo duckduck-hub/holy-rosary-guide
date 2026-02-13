@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Holy Rosary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #4CAF50;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>The Holy Rosary</h1>
+        <h2>Total of Prayers</h2>
+        <p>Each day and for every mystery of each day, you’ll lead the prayer of the rosary.</p>
+        <h3>Prayers:</h3>
+        <ul>
+            <li>Sign of the Cross</li>
+            <li>Our Father</li>
+            <li>Hail Mary</li>
+            <li>Glory Be</li>
+            <li>Fatima Prayer</li>
+        </ul>
+        <h2>Mysteries of the Rosary</h2>
+        <p>Each mystery corresponds to a day of the week:</p>
+        <ul>
+            <li>Sorrowful Mysteries (Tuesday, Friday)</li>
+            <li>Joyful Mysteries (Monday, Thursday)</li>
+            <li>Glorious Mysteries (Wednesday, Sunday)</li>
+            <li>Luminous Mysteries (Thursday)</li>
+        </ul>
+        <h2>JavaScript Functionality</h2>
+        <button onclick="displayMysteries()">Show Today's Mystery</button>
+        <p id="mysteryDisplay"></p>
+    </div>
+    <script>
+        function displayMysteries() {
+            const today = new Date();
+            const day = today.getDay();
+            const mysteries = [
+                'Sorrowful Mysteries',
+                'Joyful Mysteries',
+                'Glorious Mysteries',
+                'Luminous Mysteries'
+            ];
+            const mysteryDisplay = document.getElementById('mysteryDisplay');
+            switch (day) {
+                case 0: // Sunday
+                    mysteryDisplay.innerText = mysteries[2]; // Glorious
+                    break;
+                case 1: // Monday
+                    mysteryDisplay.innerText = mysteries[1]; // Joyful
+                    break;
+                case 2: // Tuesday
+                    mysteryDisplay.innerText = mysteries[0]; // Sorrowful
+                    break;
+                case 3: // Wednesday
+                    mysteryDisplay.innerText = mysteries[2]; // Glorious
+                    break;
+                case 4: // Thursday
+                    mysteryDisplay.innerText = mysteries[3]; // Luminous
+                    break;
+                case 5: // Friday
+                    mysteryDisplay.innerText = mysteries[0]; // Sorrowful
+                    break;
+                case 6: // Saturday
+                    mysteryDisplay.innerText = mysteries[2]; // Glorious
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
